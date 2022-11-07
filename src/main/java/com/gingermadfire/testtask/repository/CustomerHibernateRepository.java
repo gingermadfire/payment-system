@@ -2,17 +2,18 @@ package com.gingermadfire.testtask.repository;
 
 
 import com.gingermadfire.testtask.persistence.Customer;
-import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
 public class CustomerHibernateRepository implements CustomerRepository {
 
-    private final EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public Customer find(Long id) {
@@ -21,16 +22,19 @@ public class CustomerHibernateRepository implements CustomerRepository {
 
     @Override
     public List<Customer> findAll() {
-        return null;
+        return entityManager.createQuery("select c from Customer c", Customer.class).getResultList();
     }
 
     @Override
     public void save(Customer customer) {
+        entityManager.persist(customer);
 
     }
 
     @Override
     public void delete(Long id) {
+        entityManager.createQuery("DELETE FROM Customer WHERE Customer.id IN (:id)")
+                .setParameter("id", id);
 
     }
 }

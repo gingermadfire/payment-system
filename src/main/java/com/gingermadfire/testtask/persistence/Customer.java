@@ -3,6 +3,7 @@ package com.gingermadfire.testtask.persistence;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -12,10 +13,10 @@ import javax.persistence.*;
 @Table(name = "customers")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
-    private String birthday;
+    private LocalDateTime birthday;
     private String address;
 }
