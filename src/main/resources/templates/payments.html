@@ -40,7 +40,6 @@
     <button type="button" class="btn btn-primary" onclick="location.href='/billers'">Billers</button>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">New payment</button>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog dialog-centered">
@@ -52,35 +51,32 @@
 
             <div class="modal-body">
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">customers
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                    </ul>
-                    <script>
-                        $.get("/api/v1/payments", function (data) {
-                            var textToInsert = '';
-                            $.each(data, function (row, rowdata) {
-                                textToInsert += '<tr>';
-                                $.each(rowdata, function (ele, eledata) {
-                                    $.date
-                                    textToInsert += '<td>' + eledata + '</td>';
+                    <select class="form-select" id ="select-customers" aria-label="Default select example">
+                        <option selected>Customers</option>
+                        <script>
+                            $.get("/api/v1/customers", function (data) {
+                                var textToInsert = '';
+                                $.each(data, function (row, rowdata) {
+                                    textToInsert += '<option>'+ rowdata.firstName+ ' ' + rowdata.lastName + '</option>';
                                 });
-                                textToInsert += '</tr>';
-                            });
-                            $("#payments_table").append(textToInsert);
+                                $("#select-customers").append(textToInsert);
+                                }, 'json');
+                        </script>
+                    </select>
 
-                        }, 'json');
-                    </script>
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">billers
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                    </ul>
+                    <select class="form-select" id ="select-billers" aria-label="Default select example">
+                        <option selected>Billers</option>
+                        <script>
+                            $.get("/api/v1/billers", function (data) {
+                                var textToInsert = '';
+                                $.each(data, function (row, rowdata) {
+                                    textToInsert += '<option>'+ rowdata.companyName + '</option>';
+                                });
+                                $("#select-billers").append(textToInsert);
+
+                            }, 'json');
+                        </script>
+                    </select>
 
                     <div class="form-group">
                         <label for="accountInput1">Account</label>
@@ -96,13 +92,16 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Pay</button>
+                <button type="button" class="btn btn-primary" id="pay-button">Pay</button>
+                <!--<script>
+                    $.post("/api/v1/payments", function (data))
+                </script>-->
             </div>
         </div>
     </div>
 </div>
 
-<table class="table" id="content" width="100%">
+<table class="table" id="payments_table" width="80%">
     <thead>
     <tr>
         <th scope="col">ID</th>
@@ -113,15 +112,12 @@
         <th scope="col">Date</th>
     </tr>
     </thead>
-    <tbody>
-    </tbody>
     <script>
         $.get("/api/v1/payments", function (data) {
             var textToInsert = '';
             $.each(data, function (row, rowdata) {
                 textToInsert += '<tr>';
                 $.each(rowdata, function (ele, eledata) {
-                    $.date
                     textToInsert += '<td>' + eledata + '</td>';
                 });
                 textToInsert += '</tr>';

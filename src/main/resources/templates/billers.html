@@ -51,20 +51,32 @@
 
                 <div class="modal-body">
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-expanded="false">customers
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                            <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                        </ul>
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-expanded="false">billers
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                            <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                        </ul>
+                        <select class="form-select" id ="select-customers" aria-label="Default select example">
+                            <option selected>Customers</option>
+                            <script>
+                                $.get("/api/v1/customers", function (data) {
+                                    var textToInsert = '';
+                                    $.each(data, function (row, rowdata) {
+                                        textToInsert += '<option>'+ rowdata.firstName+ ' ' + rowdata.lastName + '</option>';
+                                    });
+                                    $("#select-customers").append(textToInsert);
+                                }, 'json');
+                            </script>
+                        </select>
+
+                        <select class="form-select" id ="select-billers" aria-label="Default select example">
+                            <option selected>Billers</option>
+                            <script>
+                                $.get("/api/v1/billers", function (data) {
+                                    var textToInsert = '';
+                                    $.each(data, function (row, rowdata) {
+                                        textToInsert += '<option>'+ rowdata.companyName + '</option>';
+                                    });
+                                    $("#select-billers").append(textToInsert);
+
+                                }, 'json');
+                            </script>
+                        </select>
 
                         <div class="form-group">
                             <label for="accountInput1">Account</label>
