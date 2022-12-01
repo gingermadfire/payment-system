@@ -1,5 +1,6 @@
 package com.gingermadfire.testtask.controller.api;
 
+import com.gingermadfire.testtask.dto.PaymentDto;
 import com.gingermadfire.testtask.persistence.Payment;
 import com.gingermadfire.testtask.service.PaymentService;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,8 @@ public class PaymentRestController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody Payment payment) {
-        paymentService.save(payment);
+    public ResponseEntity<?> save(@RequestBody PaymentDto dto) {
+        paymentService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

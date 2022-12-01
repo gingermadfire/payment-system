@@ -41,6 +41,7 @@
     </div>
 
     <!-- Modal -->
+    <form id="payment-form">
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog dialog-centered">
             <div class="modal-content">
@@ -90,13 +91,30 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Pay</button>
+                    <button type="submit" class="btn btn-primary">Pay</button>
+                    <script>
+                        $(function(){
+                            $('#payment-form').on('submit', function(e){
+                                e.preventDefault();
+                                $.ajax({
+                                    url: '/api/v1/payments', //this is the submit URL
+                                    type: 'POST', //or POST
+                                    data: $('#payment-form').serialize(),
+                                    success: function(data){
+                                        alert('successfully submitted')
+                                    }
+                                });
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </div>
     </div>
+    </form>
 
     <table class="table" id="billers_table">
         <thead>
