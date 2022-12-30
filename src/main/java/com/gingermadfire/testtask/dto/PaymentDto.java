@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -13,11 +14,15 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class PaymentDto {
 
-    private Long customerId;
+    private long id;
 
-    private Long billerId;
+    private CustomerDto customer;
+
+    private BillerDto biller;
 
     private String account;
 
     private BigDecimal amount;
+
+    private Instant dateTime;
 }

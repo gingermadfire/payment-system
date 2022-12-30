@@ -17,12 +17,12 @@ public class PaymentRestController {
     private final PaymentService paymentService;
 
     @GetMapping
-    public List<Payment> getAll() {
+    public List<PaymentDto> getAll() {
         return paymentService.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody PaymentDto dto) {
+    public ResponseEntity<PaymentDto> save(@RequestBody PaymentDto dto) {
         paymentService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
