@@ -1,4 +1,4 @@
-package com.gingermadfire.testtask.dto;
+package com.gingermadfire.testtask.controller.api.exchange.response;
 
 import lombok.*;
 
@@ -6,10 +6,12 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDto {
+public class CustomerResponse {
 
     private long id;
+
     private String firstName;
+
     private String lastName;
 
 }

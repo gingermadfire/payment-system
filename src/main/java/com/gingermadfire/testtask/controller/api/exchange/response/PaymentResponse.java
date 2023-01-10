@@ -1,4 +1,4 @@
-package com.gingermadfire.testtask.dto;
+package com.gingermadfire.testtask.controller.api.exchange.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,13 +12,13 @@ import java.time.Instant;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentDto {
+public class PaymentResponse {
 
     private long id;
 
-    private CustomerDto customer;
+    private CustomerResponse customer;
 
-    private BillerDto biller;
+    private BillerResponse biller;
 
     private String account;
 

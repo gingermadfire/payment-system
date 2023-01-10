@@ -1,6 +1,6 @@
 package com.gingermadfire.testtask.controller.api;
 
-import com.gingermadfire.testtask.persistence.Customer;
+import com.gingermadfire.testtask.controller.api.exchange.response.CustomerResponse;
 import com.gingermadfire.testtask.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,13 +16,13 @@ public class CustomerRestController {
     private final CustomerService customerService;
 
     @GetMapping
-    public List<Customer> getAll() {
+    public List<CustomerResponse> getAll() {
         return customerService.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody Customer customer) {
-        customerService.save(customer);
+    public ResponseEntity<CustomerResponse> save(@RequestBody CustomerResponse dto) {
+        customerService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

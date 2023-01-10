@@ -1,6 +1,6 @@
 package com.gingermadfire.testtask.mapper;
 
-import com.gingermadfire.testtask.dto.PaymentDto;
+import com.gingermadfire.testtask.controller.api.exchange.response.PaymentResponse;
 import com.gingermadfire.testtask.persistence.Payment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -11,8 +11,8 @@ public class PaymentMapper {
     private final BillerMapper billerMapper;
     private final CustomerMapper customerMapper;
 
-    public PaymentDto map(Payment payment) {
-        PaymentDto dto = new PaymentDto();
+    public PaymentResponse map(Payment payment) {
+        PaymentResponse dto = new PaymentResponse();
 
         dto.setId(payment.getId());
         dto.setCustomer(customerMapper.map(payment.getCustomer()));

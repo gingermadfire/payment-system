@@ -1,16 +1,13 @@
 package com.gingermadfire.testtask.service;
 
-import com.gingermadfire.testtask.dto.PaymentDto;
+import com.gingermadfire.testtask.controller.api.exchange.response.PaymentResponse;
 import com.gingermadfire.testtask.mapper.PaymentMapper;
 import com.gingermadfire.testtask.persistence.Payment;
 import com.gingermadfire.testtask.repository.PaymentHibernateRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -25,7 +22,7 @@ public class PaymentService {
         return paymentHibernateRepository.find(id);
     }
 
-    public List<PaymentDto> findAll(){
+    public List<PaymentResponse> findAll(){
         return paymentHibernateRepository.findAll()
                 .stream()
                 .map(paymentMapper::map)
@@ -33,7 +30,7 @@ public class PaymentService {
     }
 
     @Transactional
-    public void save(PaymentDto dto){
+    public void save(PaymentResponse dto){
         Payment payment = new Payment();
         payment.setAccount(dto.getAccount());
         payment.setAmount(dto.getAmount());

@@ -1,7 +1,8 @@
 package com.gingermadfire.testtask.service;
 
+import com.gingermadfire.testtask.controller.api.exchange.response.BillerResponse;
+import com.gingermadfire.testtask.mapper.BillerMapper;
 import com.gingermadfire.testtask.persistence.Biller;
-import com.gingermadfire.testtask.repository.BillerHibernateRepository;
 import com.gingermadfire.testtask.repository.BillerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,17 +14,25 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BillerService {
     private final BillerRepository billerRepository;
+    private final BillerMapper billerMapper;
 
     public Biller find(Long id) {
         return billerRepository.find(id);
     }
 
-    public List<Biller> findAll() {
-        return billerRepository.findAll();
+    public List<BillerResponse> findAll() {
+        return billerRepository.findAll()
+                .stream()
+                .map(billerMapper::map)
+                .toList();
     }
 
     @Transactional
-    public void save(Biller biller) {
+    public void save(BillerResponse dto) {
+        Biller biller = new Biller();
+        biller.setId(dto.getId());
+        biller.setCompanyName(dto.getCompanyName());
+
         billerRepository.save(biller);
     }
 

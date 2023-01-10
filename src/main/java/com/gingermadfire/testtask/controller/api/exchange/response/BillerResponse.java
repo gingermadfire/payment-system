@@ -1,4 +1,4 @@
-package com.gingermadfire.testtask.dto;
+package com.gingermadfire.testtask.controller.api.exchange.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BillerDto {
+public class BillerResponse {
 
     private long id;
+
     private String companyName;
 
 }

@@ -1,7 +1,6 @@
 package com.gingermadfire.testtask.controller.api;
 
-import com.gingermadfire.testtask.dto.PaymentDto;
-import com.gingermadfire.testtask.persistence.Payment;
+import com.gingermadfire.testtask.controller.api.exchange.response.PaymentResponse;
 import com.gingermadfire.testtask.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,12 +16,12 @@ public class PaymentRestController {
     private final PaymentService paymentService;
 
     @GetMapping
-    public List<PaymentDto> getAll() {
+    public List<PaymentResponse> getAll() {
         return paymentService.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<PaymentDto> save(@RequestBody PaymentDto dto) {
+    public ResponseEntity<PaymentResponse> save(@RequestBody PaymentResponse dto) {
         paymentService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

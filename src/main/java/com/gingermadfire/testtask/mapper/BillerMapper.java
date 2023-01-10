@@ -1,14 +1,14 @@
 package com.gingermadfire.testtask.mapper;
 
-import com.gingermadfire.testtask.dto.BillerDto;
+import com.gingermadfire.testtask.controller.api.exchange.response.BillerResponse;
 import com.gingermadfire.testtask.persistence.Biller;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BillerMapper {
 
-    public BillerDto map(Biller biller) {
-        BillerDto dto = new BillerDto();
+    public BillerResponse map(Biller biller) {
+        BillerResponse dto = new BillerResponse();
 
         dto.setId(biller.getId());
         dto.setCompanyName(biller.getCompanyName());
