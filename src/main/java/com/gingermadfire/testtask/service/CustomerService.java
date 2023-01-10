@@ -1,7 +1,7 @@
 package com.gingermadfire.testtask.service;
 
 import com.gingermadfire.testtask.controller.api.exchange.response.CustomerResponse;
-import com.gingermadfire.testtask.mapper.CustomerMapper;
+import com.gingermadfire.testtask.mapper.response.CustomerResponseMapper;
 import com.gingermadfire.testtask.persistence.Customer;
 import com.gingermadfire.testtask.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
-    private final CustomerMapper customerMapper;
+    private final CustomerResponseMapper customerResponseMapper;
 
     public Customer find(Long id) {
         return customerRepository.find(id);
@@ -25,7 +25,7 @@ public class CustomerService {
         return customerRepository
                 .findAll()
                 .stream()
-                .map(customerMapper::map)
+                .map(customerResponseMapper::map)
                 .toList();
     }
 

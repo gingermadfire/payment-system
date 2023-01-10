@@ -1,11 +1,11 @@
-package com.gingermadfire.testtask.mapper;
+package com.gingermadfire.testtask.mapper.response;
 
 import com.gingermadfire.testtask.controller.api.exchange.response.BillerResponse;
 import com.gingermadfire.testtask.persistence.Biller;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BillerMapper {
+public class BillerResponseMapper {
 
     public BillerResponse map(Biller biller) {
         BillerResponse dto = new BillerResponse();

@@ -1,5 +1,6 @@
 package com.gingermadfire.testtask.controller.api;
 
+import com.gingermadfire.testtask.controller.api.exchange.request.PaymentRequest;
 import com.gingermadfire.testtask.controller.api.exchange.response.PaymentResponse;
 import com.gingermadfire.testtask.service.PaymentService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class PaymentRestController {
     }
 
     @PostMapping
-    public ResponseEntity<PaymentResponse> save(@RequestBody PaymentResponse dto) {
+    public ResponseEntity<PaymentRequest> save(@RequestBody PaymentRequest dto) {
         paymentService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

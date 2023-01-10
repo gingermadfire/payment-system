@@ -1,7 +1,7 @@
 package com.gingermadfire.testtask.service;
 
 import com.gingermadfire.testtask.controller.api.exchange.response.BillerResponse;
-import com.gingermadfire.testtask.mapper.BillerMapper;
+import com.gingermadfire.testtask.mapper.response.BillerResponseMapper;
 import com.gingermadfire.testtask.persistence.Biller;
 import com.gingermadfire.testtask.repository.BillerRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BillerService {
     private final BillerRepository billerRepository;
-    private final BillerMapper billerMapper;
+    private final BillerResponseMapper billerResponseMapper;
 
     public Biller find(Long id) {
         return billerRepository.find(id);
@@ -23,7 +23,7 @@ public class BillerService {
     public List<BillerResponse> findAll() {
         return billerRepository.findAll()
                 .stream()
-                .map(billerMapper::map)
+                .map(billerResponseMapper::map)
                 .toList();
     }
 

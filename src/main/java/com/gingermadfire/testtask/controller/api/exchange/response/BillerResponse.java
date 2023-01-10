@@ -14,5 +14,4 @@ public class BillerResponse {
     private long id;
 
     private String companyName;
-
 }
