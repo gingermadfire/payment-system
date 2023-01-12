@@ -7,6 +7,8 @@ import com.gingermadfire.testtask.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+
 @RequiredArgsConstructor
 @Component
 public class PaymentRequestMapper {
@@ -20,6 +22,7 @@ public class PaymentRequestMapper {
         payment.setBiller(billerService.find(request.getBillerId()));
         payment.setAccount(request.getAccount());
         payment.setAmount(request.getAmount());
+        payment.setDateTime(Instant.now());
 
         return payment;
     }
