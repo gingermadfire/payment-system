@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -22,7 +23,7 @@ public class BillerRestController {
     }
 
     @PostMapping
-    public ResponseEntity<BillerResponse> save(@RequestBody BillerResponse dto) {
+    public ResponseEntity<BillerResponse> save(@Valid @RequestBody BillerResponse dto) {
         billerService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

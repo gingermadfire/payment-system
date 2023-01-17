@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class CustomerRestController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomerResponse> save(@RequestBody CustomerResponse dto) {
+    public ResponseEntity<CustomerResponse> save(@Valid @RequestBody CustomerResponse dto) {
         customerService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

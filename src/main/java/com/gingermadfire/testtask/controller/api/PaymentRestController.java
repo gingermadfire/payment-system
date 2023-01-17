@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -22,7 +23,7 @@ public class PaymentRestController {
     }
 
     @PostMapping
-    public ResponseEntity<PaymentRequest> save(@RequestBody PaymentRequest dto) {
+    public ResponseEntity<PaymentRequest> save(@Valid @RequestBody PaymentRequest dto) {
         paymentService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
