@@ -1,9 +1,10 @@
 package com.gingermadfire.testtask.service;
 
+import com.gingermadfire.testtask.controller.api.exchange.response.CustomerResponse;
+import com.gingermadfire.testtask.mapper.response.CustomerResponseMapper;
 import com.gingermadfire.testtask.persistence.Customer;
 import com.gingermadfire.testtask.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,17 +15,27 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
+    private final CustomerResponseMapper customerResponseMapper;
 
     public Customer find(Long id) {
         return customerRepository.find(id);
     }
 
-    public List<Customer> findAll() {
-        return customerRepository.findAll();
+    public List<CustomerResponse> findAll() {
+        return customerRepository
+                .findAll()
+                .stream()
+                .map(customerResponseMapper::map)
+                .toList();
     }
 
     @Transactional
-    public void save(Customer customer) {
+    public void save(CustomerResponse dto) {
+        Customer customer = new Customer();
+        customer.setId(dto.getId());
+        customer.setFirstName(dto.getFirstName());
+        customer.setLastName(dto.getLastName());
+
         customerRepository.save(customer);
     }
 

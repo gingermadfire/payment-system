@@ -1,12 +1,13 @@
 package com.gingermadfire.testtask.controller.api;
 
-import com.gingermadfire.testtask.persistence.Biller;
+import com.gingermadfire.testtask.controller.api.exchange.response.BillerResponse;
 import com.gingermadfire.testtask.service.BillerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -17,13 +18,13 @@ public class BillerRestController {
     private final BillerService billerService;
 
     @GetMapping
-    public List<Biller> getAll() {
+    public List<BillerResponse> getAll() {
         return billerService.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody Biller biller) {
-        billerService.save(biller);
+    public ResponseEntity<BillerResponse> save(@Valid @RequestBody BillerResponse dto) {
+        billerService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

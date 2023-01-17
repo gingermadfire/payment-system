@@ -2,7 +2,6 @@ package com.gingermadfire.testtask.repository;
 
 
 import com.gingermadfire.testtask.persistence.Customer;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
